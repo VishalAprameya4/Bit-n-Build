@@ -342,6 +342,7 @@ html, body, #root {
   position: relative; height: 5px;
   background: rgba(255,255,255,0.08); border-radius: 3px; cursor: pointer;
 }
+.timeline-track.is-scrubbing { cursor: grabbing; }
 .timeline-fill {
   position: absolute; left: 0; top: 0; height: 100%;
   background: linear-gradient(90deg, #1b5e20, #4caf50, #7ec850);

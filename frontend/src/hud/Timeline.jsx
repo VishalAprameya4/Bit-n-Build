@@ -2,9 +2,16 @@
  * Timeline HUD — play/pause, scrubber, speed selector, day labels
  */
 import { TIMELINE_STEPS, SPEED_OPTIONS } from '../useSimulation';
+import { useState } from 'react';
 
 export default function Timeline({ t, playing, speed, onPlay, onPause, onSeek, onCycleSpeed }) {
   const pct = t * 100;
+  const [scrubbing, setScrubbing] = useState(false);
+
+  const seekFromPointer = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    onSeek(Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)));
+  };
 
   return (
     <div className="timeline-bar">
@@ -43,10 +50,11 @@ export default function Timeline({ t, playing, speed, onPlay, onPause, onSeek, o
         </div>
 
         {/* Track */}
-        <div className="timeline-track" onClick={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          onSeek(Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width)));
-        }}>
+        <div className={`timeline-track${scrubbing ? ' is-scrubbing' : ''}`}
+          onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); setScrubbing(true); seekFromPointer(e); }}
+          onPointerMove={(e) => { if (scrubbing) seekFromPointer(e); }}
+          onPointerUp={(e) => { if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId); setScrubbing(false); }}
+          onPointerCancel={() => setScrubbing(false)}>
           {/* Filled region */}
           <div className="timeline-fill" style={{ width: `${pct}%` }} />
           {/* Thumb */}

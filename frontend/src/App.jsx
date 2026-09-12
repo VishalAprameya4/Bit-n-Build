@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 import { useAppState }  from './useAppState';
 import { useSimulation } from './useSimulation';
-import AgriWorld    from './scene/AgriWorld';
+import CinematicTwin from './scene/CinematicTwin';
 import Timeline     from './hud/Timeline';
 import WeatherPanel from './hud/WeatherPanel';
 import FarmPanel    from './hud/FarmPanel';
@@ -74,12 +74,10 @@ export default function App() {
       {/* ── DIGITAL TWIN VIEW ────────────────────────────────── */}
       {activeTab === 'twin' && (
         <div className="twin-container">
-          {/* Fullscreen 3D Canvas */}
+          {/* Fullscreen 2.5D cinematic map */}
           <div className="canvas-area">
-            <AgriWorld
+            <CinematicTwin
               simState={sim.simState}
-              plan={appState.plan}
-              scenario={appState.scenario}
             />
           </div>
 
