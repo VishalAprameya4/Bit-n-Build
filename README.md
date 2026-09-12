@@ -1,789 +1,355 @@
-# 🌾 AGRI-FLOW
-
-### Regional Agricultural Supply Intelligence & Autonomous Response Network
+# 🌱 AGRI-FLOW
+## Regional Agricultural Supply Intelligence & Autonomous Response Network
 
 > **Detect the glut before it becomes a crisis.**
 
-AGRI-FLOW is a multi-agent agricultural coordination system designed to detect **emerging regional supply gluts** and determine how excess agricultural produce can be redistributed across markets, processors, storage facilities, and logistics routes before oversupply causes severe price pressure and avoidable wastage.
+AGRI-FLOW is an **agentic AI-powered agricultural supply intelligence and response system** that detects emerging regional supply gluts and coordinates responses across markets, storage, processing, and logistics.
 
-Instead of simply predicting crop prices or telling an individual farmer where to sell, AGRI-FLOW looks at the **regional supply network as a whole** and continuously evaluates whether incoming harvest can be absorbed by available demand and infrastructure.
+Instead of reacting after markets become overloaded and prices collapse, AGRI-FLOW combines **live agricultural market data, weather intelligence, multi-agent reasoning, optimization, validation, and an interactive Digital Twin** to determine what is happening, why it is happening, and what action should be taken.
 
 ---
 
 ## 🚨 The Problem
 
-Agricultural markets can experience sudden local supply surges when large numbers of farmers harvest the same crop around the same time.
+Agricultural supply disruptions are often caused by a lack of coordination between:
 
-When:
+- Crop supply and harvest timing
+- Market absorption capacity
+- Weather conditions
+- Storage availability
+- Processing capacity
+- Logistics
 
-```text
-Expected Supply > Local Absorption Capacity
-```
+When large volumes of produce reach a region simultaneously, local markets can become saturated, prices can decline, and available storage or processing capacity may remain underutilized.
 
-the resulting surplus can lead to:
-
-* Falling market prices
-* Forced distress selling
-* Underutilized storage
-* Increased transportation pressure
-* Produce deterioration and wastage
-* Poor coordination between farmers, markets, processors and storage facilities
-
-The challenge is not merely predicting that prices will fall.
-
-The harder question is:
-
-> **When a regional glut is forming, what should the agricultural supply network collectively do with the surplus?**
+**AGRI-FLOW addresses this regional coordination gap.**
 
 ---
 
-# 💡 Our Solution
+## 💡 The Solution
 
-AGRI-FLOW creates a **regional agricultural digital twin** that combines real market observations with operational constraints.
+AGRI-FLOW continuously analyzes regional agricultural signals and detects emerging supply pressure.
 
-It:
-
-1. Monitors agricultural market conditions
-2. Detects abnormal supply increases
-3. Estimates upcoming supply pressure
-4. Evaluates alternative demand destinations
-5. Checks storage and processing capacity
-6. Calculates logistics feasibility
-7. Coordinates multiple specialist agents
-8. Generates an actionable response plan
-9. Validates the plan against constraints
-10. Dynamically replans when conditions change
-
-### Core idea
+When a potential glut is identified, specialized agents investigate the situation and a coordinator determines an appropriate response.
 
 ```text
-REAL-WORLD SIGNALS
-       ↓
-Supply + Market + Weather Data
-       ↓
-     GLUT RISK
-       ↓
-  MULTI-AGENT ANALYSIS
-       ↓
-Resource & Logistics Constraints
-       ↓
-  COORDINATED RESPONSE
-       ↓
-  VALIDATED ALLOCATION
-       ↓
-  LIVE DIGITAL TWIN
-```
+Live Market + Weather Data
+            ↓
+       Glut Detection
+            ↓
+     Specialist Agents
+            ↓
+     Coordinator Agent
+            ↓
+      Response Decision
+            ↓
+      OR-Tools Optimizer
+            ↓
+        Validation
+            ↓
+      Response Plan
+            ↓
+      Digital Twin
+            ↓
+   What-If Replanning
 
----
+🤖 Agentic AI
 
-# 🌐 The AGRI-FLOW Digital Twin
+AGRI-FLOW uses a hybrid agentic architecture.
 
-The central interface represents the agricultural supply network as a live interactive network.
+Specialist Agents
 
-Instead of visualizing electricity flowing through a city, AGRI-FLOW visualizes **agricultural produce flowing through the regional supply chain**.
+Market Agent
 
-```text
-                    🏭 PROCESSOR
-                         ↑
-                         │
-🌾 FARMS → 🔴 KOLAR MANDI ─────→ 🏙️ BANGALORE
-                         │
-                         ↓
-                    🧊 STORAGE
-                         │
-                         ↓
-                    🚛 LOGISTICS
-```
+Analyzes mandi arrivals
+Tracks price trends
+Evaluates market saturation
+Identifies alternative markets
 
-Nodes represent:
+Weather Agent
 
-* Farming regions
-* Agricultural markets
-* Alternative markets
-* Processing facilities
-* Storage facilities
+Analyzes current and forecast weather
+Evaluates rainfall and harvest pressure
+Identifies weather-driven risks
 
-Edges represent:
+Supply Agent
 
-* Produce movement
-* Transportation routes
-* Available capacity
+Compares current arrivals with historical baselines
+Detects abnormal supply surges
+Estimates regional supply pressure
 
-The system dynamically changes the network when the agents generate or modify a response plan.
+Resource Agent
 
----
+Checks storage capacity
+Evaluates processing capacity
+Checks secondary market availability
+Evaluates operational constraints
+Coordinator Agent
 
-# 🤖 Multi-Agent Architecture
+The central coordinator uses Qwen running through Ollama to:
 
-AGRI-FLOW uses a small number of specialized agents rather than one general-purpose chatbot.
+Interpret evidence from specialist agents
+Select the next action/tool
+Synthesize findings
+Determine a response strategy
+Generate the final decision
 
-## 1. Supply Agent 🌾
+Python tools handle deterministic calculations, while the LLM handles coordination and reasoning.
 
-Determines whether incoming agricultural supply is abnormal.
+⚙️ Optimization & Validation
 
-### Responsibilities
+Once a response strategy is selected, AGRI-FLOW uses Google OR-Tools CP-SAT to determine a cost-efficient allocation.
 
-* Analyze historical arrivals
-* Compare current arrivals against baselines
-* Estimate upcoming harvest pressure
-* Identify synchronized supply surges
+The optimizer considers:
 
-### Example
+Destination capacity
+Storage capacity
+Processing capacity
+Route constraints
+Fleet constraints
+Commodity compatibility
+Transportation cost
 
-```text
-Historical arrival baseline: 620T
-Current arrival:             910T
+The resulting plan is passed through a validation layer before being presented as the final response.
 
-Arrival anomaly: +47%
-```
-
----
-
-## 2. Market Agent 📈
-
-Evaluates market absorption and price conditions.
-
-### Responsibilities
-
-* Monitor mandi prices
-* Analyze price trends
-* Compare nearby markets
-* Identify potential alternative demand
-* Estimate market saturation
-
----
-
-## 3. Risk Agent 🌦️
-
-Evaluates external conditions that can influence supply.
-
-### Inputs
-
-* Weather forecasts
-* Temperature
-* Rainfall
-* Harvest conditions
-
-### Example
-
-```text
-Heavy rainfall expected
+Coordinator Decision
         ↓
-Potential harvest concentration
+   OR-Tools Solver
         ↓
-Higher short-term arrival pressure
-```
-
----
-
-## 4. Resource Agent 🧊🚛
-
-Evaluates the physical resources available to absorb or redirect surplus.
-
-### Checks
-
-* Storage capacity
-* Processing capacity
-* Transportation capacity
-* Route feasibility
-* Estimated transportation cost
-* Holding constraints
-
----
-
-## 5. Coordinator Agent 🧠
-
-The Coordinator is responsible for synthesizing the specialist outputs.
-
-It:
-
-* Collects agent findings
-* Resolves conflicting recommendations
-* Selects feasible interventions
-* Requests additional analysis when required
-* Produces the response plan
-* Triggers replanning when conditions change
-
-The final recommendation is then passed through deterministic validation before being displayed.
-
----
-
-# 🔄 Why Agents?
-
-A conventional ML model could predict:
-
-> "There is a high probability of a supply glut."
-
-An optimization algorithm could calculate:
-
-> "Send 120T to Market B."
-
-But the real-world problem requires **continuous coordination between multiple changing factors**.
-
-AGRI-FLOW therefore follows:
-
-```text
-Observe
-   ↓
-Investigate
-   ↓
-Reason
-   ↓
-Coordinate
-   ↓
-Act
-   ↓
-Observe changed conditions
-   ↓
-Replan
-```
-
-This allows the system to respond when assumptions change instead of producing a static recommendation.
-
----
-
-# ⚡ Dynamic Replanning
-
-One of AGRI-FLOW's core capabilities is **what-if simulation**.
-
-After generating an initial plan, the user can introduce disruptions.
-
-### Example
-
-Initial plan:
-
-```text
-120T → Bangalore
-90T  → Processor
-80T  → Storage
-60T  → Mysore
-```
-
-The user then disables the processor:
-
-```text
-🏭 PROCESSOR ❌ OFFLINE
-```
-
-AGRI-FLOW detects that the existing plan is no longer feasible.
-
-The Coordinator triggers replanning:
-
-```text
-90T Processor allocation
+   Feasible Plan
         ↓
-Alternative capacity search
+      Validator
         ↓
-Storage + markets + logistics
-        ↓
-New validated plan
-```
+   Final Response
+🌍 Agricultural Digital Twin
 
-Other scenarios include:
+AGRI-FLOW includes an interactive Digital Twin that visualizes the agricultural response as an operational scenario.
 
-* Transportation cost +30%
-* Storage capacity reduced
-* Alternative market becomes unavailable
-* Expected supply increases
-* Processing capacity changes
+It represents:
 
-This demonstrates the system's ability to **adapt rather than simply predict**.
+Agricultural fields
+Crop harvesting
+Trucks and routes
+Storage facilities
+Processing units
+Markets
+Weather events
+Produce movement
 
----
+The Digital Twin allows users to understand the response visually instead of relying only on tables and metrics.
 
-# 📊 Data Sources
+🔄 What-If Disruption & Replanning
 
-AGRI-FLOW intentionally combines **real public agricultural observations** with a controlled operational simulation.
+Agricultural networks are dynamic.
 
-## Real Data
+A route may become unavailable, market capacity may change, or a facility may become constrained.
 
-### AGMARKNET / data.gov.in
+AGRI-FLOW allows disruptions to be introduced into the simulated network.
 
-Used for agricultural market observations such as:
+The system then:
 
-* Commodity
-* Market / APMC
-* Minimum price
-* Maximum price
-* Modal price
-* Market arrivals where available
-* Date
+Existing Plan
+      ↓
+   Disruption
+      ↓
+ Re-evaluate
+      ↓
+ Coordinator
+      ↓
+ Re-optimize
+      ↓
+  Validate
+      ↓
+ New Response Plan
 
-AGMARKNET provides public agricultural market information across Indian markets.
+This demonstrates that AGRI-FLOW can adapt its response instead of relying on a static recommendation.
 
-Source:
+📡 Data Sources
+Live Data
 
-* Government of India
-* data.gov.in
-* AGMARKNET / e-NAM ecosystem
+AGMARKNET / India OGD
 
----
+Mandi arrivals
+Minimum price
+Maximum price
+Modal price
+Historical market trends
 
-### Weather Data
+Open-Meteo
 
-Weather information is obtained through **Open-Meteo**.
+Current weather
+Temperature
+Rainfall
+Precipitation probability
+Forecast conditions
+Simulation Data
 
-Used variables include:
+The prototype uses controlled simulation data for:
 
-* Temperature
-* Precipitation
-* Forecast conditions
-* Historical weather observations
+Storage availability
+Processing capacity
+Secondary market capacity
+Logistics routes
+Fleet availability
 
-Open-Meteo provides weather data through a free API and does not require an API key for its standard non-commercial usage.
+Live observations and simulated operational data are kept separate.
 
----
+🖥️ System Interface
+Overview
 
-# 🧪 Simulated Operational Data
+Provides a real-time view of:
 
-Some information required for real-time supply coordination is generally not available through a single open public API.
+Supply conditions
+Market conditions
+Price movement
+Surplus
+Market saturation
+Weather pressure
+Recommended response
+Field Intelligence
 
-Therefore AGRI-FLOW uses a controlled operational dataset for the prototype.
+Connects crop lifecycle and field conditions with weather and harvest decisions.
 
-These include:
+Digital Twin
 
-### Markets
+Visualizes harvesting, transportation, storage, market dispatch, weather events, and recovery.
 
-```text
-market_id
-name
-location
-capacity
-current_load
-latitude
-longitude
-```
+Agent Brain
 
-### Storage Facilities
+Makes the multi-agent decision process visible:
 
-```text
-facility_id
-capacity
-available_capacity
-holding_cost
-location
-```
-
-### Processing Facilities
-
-```text
-processor_id
-commodity
-capacity
-location
-```
-
-### Logistics
-
-```text
-origin
-destination
-distance
-truck_capacity
-transport_cost
-available_trucks
-```
-
-These values are explicitly treated as **simulation inputs**, not claimed to represent live private logistics infrastructure.
-
----
-
-# 🧮 Decision Engine
-
-The LLM is **not responsible for numerical calculations**.
-
-AGRI-FLOW separates reasoning from computation.
-
-```text
-                 DATA
-                  ↓
-        ┌──────────────────┐
-        │ Deterministic    │
-        │ Data Engine      │
-        └────────┬─────────┘
-                 ↓
-       Supply / Market / Risk
-                 ↓
-        ┌──────────────────┐
-        │ Optimization      │
-        │ Engine            │
-        └────────┬─────────┘
-                 ↓
-          Agent Coordinator
-                 ↓
-        ┌──────────────────┐
-        │ Validation Layer │
-        └────────┬─────────┘
-                 ↓
-          Final Response
-```
-
-Python handles:
-
-* Statistical calculations
-* Supply estimates
-* Capacity constraints
-* Transportation costs
-* Feasibility checks
-* Optimization
-
-The LLM handles:
-
-* Agent coordination
-* Reasoning over specialist findings
-* Explanation
-* Decision synthesis
-* Replanning triggers
-
-This reduces hallucination risk and keeps the decision system deterministic where numerical correctness matters.
-
----
-
-# 🧠 Local AI
-
-AGRI-FLOW is designed to operate without paid proprietary LLM APIs.
-
-The prototype uses a locally hosted model through:
-
-**Ollama**
-
-This means the core agentic workflow can operate without requiring:
-
-* OpenAI API credits
-* Claude API credits
-* Gemini API credits
-* Paid inference services
-
-A deterministic fallback planner is also maintained so that the core demonstration does not depend entirely on successful LLM inference.
-
----
-
-# 🏗️ Technology Stack
-
-| Layer           | Technology                   |
-| --------------- | ---------------------------- |
-| Frontend        | React + Vite                 |
-| Visualization   | Three.js / React Three Fiber |
-| Backend         | Python + FastAPI             |
-| Data Processing | Pandas                       |
-| Database        | SQLite                       |
-| Optimization    | Google OR-Tools              |
-| Charts          | Recharts                     |
-| Maps            | Leaflet                      |
-| Local LLM       | Ollama + Qwen                |
-| Market Data     | AGMARKNET / data.gov.in      |
-| Weather         | Open-Meteo                   |
-
-The visualization may use a lightweight SVG implementation if required for rapid prototyping, with Three.js used where time permits.
-
----
-
-# 🖥️ Core Interface
-
-The primary interface contains:
-
-### Regional Network
-
-Interactive visualization of:
-
-* Farms
-* Markets
-* Processors
-* Storage
-* Transport routes
-
-### Glut Monitor
-
-```text
-GLUT RISK
-
-87% — HIGH
-```
-
-### Supply Overview
-
-```text
-Expected Supply       1,200T
-Local Absorption        850T
-Projected Surplus       350T
-```
-
-### Agent Activity
-
-```text
-✓ Supply Agent
-✓ Market Agent
-✓ Risk Agent
-✓ Resource Agent
-🧠 Coordinator
-```
-
-### Response Plan
-
-```text
-120T → Bangalore
-90T  → Processor
-80T  → Storage
-60T  → Mysore
-```
-
-### What-If Controls
-
-Users can dynamically modify:
-
-* Storage availability
-* Processing capacity
-* Transport costs
-* Market availability
-* Expected supply
-
-and observe the system replan.
-
----
-
-# 🎬 Demonstration Flow
-
-The intended demonstration follows a complete real-world scenario.
-
-### Step 1 — Normal Conditions
-
-The regional network operates normally.
-
-Markets remain within their expected absorption levels.
-
----
-
-### Step 2 — Supply Surge
-
-The system receives abnormal arrival data and increased expected harvest.
-
-```text
-Supply ↑
-Market absorption → limited
-Price ↓
-```
-
-The system detects an emerging glut.
-
----
-
-### Step 3 — Agent Investigation
-
-Specialist agents activate.
-
-```text
-🌾 Supply Agent       → Supply anomaly detected
-📈 Market Agent       → Market saturation detected
-🌦️ Risk Agent         → Harvest risk identified
-🧊 Resource Agent     → Alternative capacity found
-🧠 Coordinator        → Response generated
-```
-
----
-
-### Step 4 — Digital Twin Reacts
-
-The affected market turns red.
-
-Surplus produce begins flowing toward feasible alternatives.
-
----
-
-### Step 5 — Disruption
-
-The judge disables a processor.
-
-```text
-🏭 PROCESSOR ❌
-```
-
----
-
-### Step 6 — Autonomous Replanning
-
-AGRI-FLOW detects that the existing plan is invalid.
-
-The Coordinator generates a new allocation.
-
----
-
-### Step 7 — Second Disruption
-
-Transportation cost is increased.
-
-```text
-Transport Cost
-₹X → ₹1.3X
-```
-
-The system recalculates the economics and generates another plan.
-
----
-
-### Step 8 — Final Result
-
-The digital twin stabilizes around a new feasible allocation.
-
-The system explains:
-
-> **Why the original plan changed, which constraints caused the change, and what the new response achieves.**
-
----
-
-# 🎯 Design Philosophy
-
-AGRI-FLOW is intentionally **not**:
-
-* A generic farmer chatbot
-* A crop disease detector
-* A simple crop price predictor
-* A farmer marketplace
-* A digital auction platform
-* A payment platform
-* A blockchain system
-
-The focus is:
-
-> **Regional supply-shock detection and coordinated response.**
-
----
-
-# 🔐 Reliability Principles
-
-AGRI-FLOW follows several safeguards:
-
-### Deterministic numerical layer
-
-Numerical decisions are calculated using deterministic code rather than generated by an LLM.
-
-### Constraint validation
-
-Every generated allocation is checked against:
-
-* Capacity
-* Transport availability
-* Storage limits
-* Processing limits
-* Commodity compatibility
-
-### LLM output schema
-
-Agent outputs are structured and validated before being consumed by downstream components.
-
-### Fallback planning
-
-If the local LLM fails, the deterministic planner can still produce a valid response.
-
----
-
-# 🚀 Future Scope
-
-Potential extensions include:
-
-* Integration with additional agricultural datasets
-* Real-time FPO inventory
-* Live logistics providers
-* Processor procurement systems
-* Crop-specific deterioration models
-* Better regional demand estimation
-* Multi-FPO coordination
-* Predictive harvest modeling
-* Integration with government agricultural platforms
-* Historical glut event analysis
-
----
-
-# 👥 Intended Users
-
-AGRI-FLOW is primarily designed as a decision-support system for:
-
-* Farmer Producer Organizations (FPOs)
-* Agricultural cooperatives
-* Market coordinators
-* Procurement organizations
-* Agricultural logistics planners
-* Government agricultural planners
-
-It is intended to support **collective coordination**, rather than replace individual farmers' decisions.
-
----
-
-# 🌱 Impact
-
-AGRI-FLOW aims to shift agricultural supply management from:
-
-```text
-Glut occurs
-     ↓
-Prices collapse
-     ↓
-Reactive intervention
-```
-
-toward:
-
-```text
-Early signals
-     ↓
-Glut risk detected
-     ↓
-Collective coordination
-     ↓
-Supply redistributed
-     ↓
-Reduced pressure on saturated markets
-```
-
-The system's reported impact metrics are **model estimates from the simulation**, not claims of measured real-world economic impact.
-
----
-
-# 📌 Project Status
-
-**Hackathon Prototype — Bit N Build: Around the World 2026**
-
-The prototype prioritizes:
-
-* Agentic coordination
-* Real agricultural data
-* Deterministic decision-making
-* Dynamic replanning
-* Interactive digital-twin visualization
-* Zero-cost/local AI inference
-* Demonstrable real-world utility
-
----
-
-## ⚠️ Data Disclaimer
-
-AGRI-FLOW is a prototype decision-support system.
-
-Market observations are based on publicly available agricultural data. Storage, processing, transportation, and other operational capacities used in the prototype may be simulated for demonstration purposes.
-
-Recommendations should not be treated as guaranteed financial, agricultural, or logistical advice.
-
----
-
-# ⭐ Core Concept
-
-> **AGRI-FLOW doesn't just predict that a glut is coming.**
->
-> **It coordinates the network's response to it.**
-
-```text
-🌾 SUPPLY
+Live Data
     ↓
-📊 DETECT
+Specialist Agents
     ↓
-🤖 INVESTIGATE
+Coordinator
     ↓
-🧠 COORDINATE
+Decision
     ↓
-🚛 REDISTRIBUTE
+Optimization
     ↓
-🔄 REPLAN
+Validation
     ↓
-🌱 STABILIZE
-```
+Response
+🛠️ Tech Stack
+Component	Technology
+Frontend	React
+Backend	Python + FastAPI
+Agentic AI	Qwen + Ollama
+Optimization	Google OR-Tools
+Market Data	AGMARKNET / India OGD
+Weather Data	Open-Meteo
+Visualization	Interactive Digital Twin
+Version Control	Git + GitHub
+📂 Project Structure
+AGRI-FLOW/
+│
+├── backend/
+│   ├── agents/
+│   ├── data/
+│   ├── engine/
+│   ├── routers/
+│   ├── main.py
+│   ├── config.py
+│   ├── database.py
+│   └── seed_data.py
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── data/
+│   └── simulation/
+│
+├── .gitignore
+└── README.md
+🚀 Running Locally
+1. Start Ollama
 
-**AGRI-FLOW — Detect the glut before it becomes a crisis.**
+Make sure Ollama is installed and the configured Qwen model is available.
+
+ollama ls
+
+Run the model if required:
+
+ollama run qwen3:8b
+2. Start the Backend
+
+From the project root:
+
+python -m uvicorn backend.main:app --reload --port 8000
+
+Backend:
+
+http://localhost:8000
+3. Start the Frontend
+cd frontend
+npm install
+npm run dev
+
+Open the local URL provided by Vite.
+
+🎯 Example Scenario
+
+A tomato-producing region begins experiencing rapidly increasing arrivals while market prices decline.
+
+AGRI-FLOW detects:
+
+Arrivals ↑
+Prices ↓
+Market Saturation ↑
+Weather Pressure ↑
+
+The specialist agents investigate the situation.
+
+The Coordinator determines that the primary market cannot safely absorb the projected supply and recommends:
+
+HARVEST + SPLIT DISPATCH
+
+The optimizer distributes the surplus across suitable destinations while minimizing freight cost.
+
+The validator verifies the resulting plan.
+
+The Digital Twin then visualizes the response.
+
+If a disruption occurs, AGRI-FLOW can re-evaluate the network and generate a new validated plan.
+
+🌱 Key Differentiator
+
+AGRI-FLOW is not simply a:
+
+Farmer marketplace
+Price prediction dashboard
+Chatbot
+Logistics tracker
+Static optimization algorithm
+
+It combines:
+
+Real agricultural intelligence + multi-agent reasoning + deterministic tools + optimization + validation + simulation + autonomous replanning
+
+to turn fragmented agricultural signals into coordinated action.
+
+From fragmented signals to coordinated agricultural action.
+
+🔮 Future Scope
+Real-time storage occupancy
+Live fleet tracking
+Farmer-level supply forecasting
+Commodity-specific demand forecasting
+Dynamic price forecasting
+Crop-specific spoilage prediction
+Multi-region coordination
+More agricultural IoT integrations
+Learning from historical response plans
+👥 Team
+VISHAL APRAMEYA
+SHASHANK SREENIVAS
+SMARAN K RAO
+SRINIVAS SHANBAGH
+🌱 AGRI-FLOW
+
+Regional Agricultural Supply Intelligence & Autonomous Response Network
+
+Detect the glut before it becomes a crisis.
