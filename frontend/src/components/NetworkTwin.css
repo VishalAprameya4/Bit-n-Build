@@ -1,0 +1,156 @@
+.network-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.network-svg-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.network-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.network-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Node animations */
+.node-group {
+  transition: opacity 0.4s ease;
+}
+
+.node-disrupted {
+  opacity: 0.35;
+}
+
+/* Rotating outer ring for critical Kolar */
+.kolar-ring-critical {
+  animation: spin 12s linear infinite;
+  transform-origin: center;
+}
+
+.kolar-ring {
+  animation: spin 30s linear infinite;
+  transform-origin: center;
+}
+
+/* Animated flow dash */
+.flow-dash {
+  animation: flowDash 1.2s linear infinite;
+}
+
+/* Phase overlay banner */
+.network-overlay-banner {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  border: 1px solid;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+.overlay-analyzing {
+  background: rgba(196,138,32,0.12);
+  color: var(--amber-light);
+  border-color: rgba(196,138,32,0.3);
+}
+
+.overlay-active {
+  background: rgba(46,125,82,0.1);
+  color: var(--green-light);
+  border-color: rgba(46,125,82,0.25);
+}
+
+.overlay-disruption {
+  background: rgba(201,64,64,0.12);
+  color: var(--red-light);
+  border-color: rgba(201,64,64,0.35);
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+.overlay-replanning {
+  background: rgba(74,127,193,0.1);
+  color: var(--accent);
+  border-color: rgba(74,127,193,0.3);
+}
+
+/* Legend */
+.network-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Idle placeholder */
+.network-idle-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.network-idle-text {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  text-align: center;
+  max-width: 320px;
+  padding: 0 24px;
+}
+
+/* Kolar capacity badge */
+.kolar-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--red-light);
+  background: rgba(201,64,64,0.08);
+  border: 1px solid rgba(201,64,64,0.25);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+}

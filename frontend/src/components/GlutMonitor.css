@@ -1,0 +1,151 @@
+.glut-panel {
+  flex-shrink: 0;
+}
+
+.glut-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.glut-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+  gap: 10px;
+}
+
+.glut-idle-icon {
+  font-size: 28px;
+  color: var(--text-dim);
+}
+
+.glut-idle-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* Primary glut metric */
+.glut-primary {
+  padding: 8px 0 12px;
+}
+
+.glut-primary-label {
+  margin-bottom: 4px;
+}
+
+.glut-primary-value {
+  font-size: 38px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.glut-primary.critical .glut-primary-value { color: var(--red-light); }
+.glut-primary.warning  .glut-primary-value { color: var(--amber-light); }
+.glut-primary.ok       .glut-primary-value { color: var(--green-light); }
+
+.glut-pct {
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 2px;
+  opacity: 0.7;
+}
+
+.glut-bar-track {
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.glut-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s ease;
+  background: var(--text-muted);
+}
+
+.glut-bar-fill.critical { background: var(--red); }
+.glut-bar-fill.warning  { background: var(--amber); }
+.glut-bar-fill.ok       { background: var(--green); }
+
+/* Metrics grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.metric {
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  border: 1px solid var(--border-subtle);
+}
+
+.metric-label {
+  margin-bottom: 2px;
+}
+
+.metric-value {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.metric-num {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.metric-unit {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.metric-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 1px;
+}
+
+.metric-critical .metric-num { color: var(--red-light); }
+.metric-warning  .metric-num { color: var(--amber-light); }
+.metric-ok       .metric-num { color: var(--green-light); }
+.metric-idle     .metric-num { color: var(--text-muted); }
+
+/* Supply detail rows */
+.supply-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.sd-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sd-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.sd-val {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}

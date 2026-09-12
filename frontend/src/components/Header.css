@@ -1,0 +1,112 @@
+.hdr {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-raised);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.hdr-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.hdr-logo {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.hdr-sep {
+  color: var(--border-accent);
+  font-size: 14px;
+}
+
+.hdr-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.hdr-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hdr-region {
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.hdr-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.sys-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.sys-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-idle       { color: var(--text-muted); border-color: var(--border-subtle); }
+.status-analyzing  { color: var(--amber-light); border-color: rgba(196,138,32,0.3); animation: pulse 1.2s ease-in-out infinite; }
+.status-active     { color: var(--green-light); border-color: rgba(46,125,82,0.3); }
+.status-disruption { color: var(--red-light); border-color: rgba(201,64,64,0.3); }
+.status-replanning { color: var(--accent); border-color: rgba(74,127,193,0.3); animation: pulse 1s ease-in-out infinite; }
+
+.demo-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--amber-light);
+  border: 1px solid rgba(196,138,32,0.3);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+}
+
+.live-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green-light);
+  border: 1px solid rgba(46,125,82,0.3);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+}
+
+.hdr-clock {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
