@@ -1,53 +1,53 @@
 {
   "market_id": "KOLAR",
-  "market_name": "Ramanagara APMC",
+  "market_name": "Belgaum APMC",
   "state": "Karnataka",
-  "district": "Bengaluru South",
+  "district": "Belagavi",
   "commodity": "Tomato",
   "variety": "Tomato",
   "arrivals_t": 910.0,
-  "min_price": 1000.0,
-  "modal_price": 1600.0,
-  "max_price": 2000.0,
+  "min_price": 2000.0,
+  "modal_price": 2500.0,
+  "max_price": 3000.0,
   "price_unit": "Rs/Quintal",
   "arrival_unit": "tonnes",
   "observed_at": "12/09/2026",
-  "fetched_at": "2026-09-12T13:22:38.509870",
+  "fetched_at": "2026-09-12T14:25:32.495508",
   "history": [
     {
       "date": "2026-09-06",
       "arrivals_t": 618.8,
-      "modal_price": 2048.0
+      "modal_price": 3200.0
     },
     {
       "date": "2026-09-07",
       "arrivals_t": 655.2,
-      "modal_price": 2000.0
+      "modal_price": 3125.0
     },
     {
       "date": "2026-09-08",
       "arrivals_t": 691.6,
-      "modal_price": 1920.0
+      "modal_price": 3000.0
     },
     {
       "date": "2026-09-09",
       "arrivals_t": 746.2,
-      "modal_price": 1840.0
+      "modal_price": 2875.0
     },
     {
       "date": "2026-09-10",
       "arrivals_t": 809.9,
-      "modal_price": 1728.0
+      "modal_price": 2700.0
     },
     {
       "date": "2026-09-11",
       "arrivals_t": 864.5,
-      "modal_price": 1648.0
+      "modal_price": 2575.0
     },
     {
       "date": "2026-09-12",
       "arrivals_t": 910.0,
-      "modal_price": 1600.0
+      "modal_price": 2500.0
     }
   ],
   "arrival_trend_7d_pct": 47.1,
