@@ -78,6 +78,7 @@ export default function App() {
           <div className="canvas-area">
             <CinematicTwin
               simState={sim.simState}
+              plan={appState.plan}
             />
           </div>
 

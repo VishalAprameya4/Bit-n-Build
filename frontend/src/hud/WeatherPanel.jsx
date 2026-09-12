@@ -7,13 +7,12 @@ export default function WeatherPanel({ simState, scenario }) {
 
   const temp     = obs.temp_celsius     ?? 29;
   const humidity = obs.humidity_pct     ?? 74;
-  const precip   = obs.precipitation_mm ?? 0;
   const desc     = obs.weather_description ?? 'Partly Cloudy';
 
   // Interpolate to "Rain" as t increases
   const displayDesc = rainIntensity > 0.5 ? 'Heavy Rain' : rainIntensity > 0.2 ? 'Showers' : cloudCover > 0.5 ? 'Overcast' : desc;
   const displayIcon = rainIntensity > 0.5 ? '🌧️' : rainIntensity > 0.15 ? '🌦️' : cloudCover > 0.55 ? '☁️' : '⛅';
-  const forecast24hRain = scenario?.observed?.weather?.forecast_24h?.precipitation_sum_mm;
+  const rainRisk = t < 0.12 ? 78 : t < 0.40 ? 88 : rainIntensity > 0.1 ? 95 : t < 0.68 ? 22 : 12;
 
   return (
     <div className="hud-panel weather-panel">
@@ -42,10 +41,13 @@ export default function WeatherPanel({ simState, scenario }) {
           <div className="wg-item">
             <span className="wg-label">Rain Risk</span>
             <span className="wg-value" style={{ color: rainIntensity > 0.4 ? '#ff6b6b' : '#ffc107' }}>
-              {Math.round(Math.min(95, 10 + t * 85))}%
+              {rainRisk}%
             </span>
           </div>
         </div>
+        {t < 0.12 && (
+          <div className="weather-alert">⚠ Rain expected in 2 days — harvest window is open</div>
+        )}
         {rainIntensity > 0.1 && (
           <div className="weather-alert">
             ⚠ Rain active — field operations impacted

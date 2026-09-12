@@ -40,6 +40,12 @@ export default function MarketPanel({ simState, scenario }) {
             {loadPct > 100 ? 'HIGH PRESSURE' : loadPct > 80 ? 'ELEVATED' : 'NORMAL'} ({loadPct}%)
           </span>
         </div>
+        <div className="stat-row">
+          <span className="stat-label">Glut Risk</span>
+          <span className="stat-value" style={{ color: loadPct > 100 ? '#ff6b6b' : '#4caf50' }}>
+            {Math.round(Math.max(18, loadPct * 0.76))}%
+          </span>
+        </div>
         <div className="harvest-bar-wrap">
           <div className="harvest-bar-label">
             <span>Load</span>

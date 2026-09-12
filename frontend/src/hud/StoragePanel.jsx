@@ -1,7 +1,7 @@
 /**
  * StoragePanel — Floating cold storage status panel
  */
-export default function StoragePanel({ simState, scenario }) {
+export default function StoragePanel({ simState }) {
   const { storageFill } = simState;
   const fillPct  = Math.round(storageFill * 100);
   const capacityT = 1200; // from backend seed data
@@ -23,9 +23,13 @@ export default function StoragePanel({ simState, scenario }) {
           <span className="stat-value">{usedT}T</span>
         </div>
         <div className="stat-row">
+          <span className="stat-label">Available</span>
+          <span className="stat-value">{capacityT - usedT}T</span>
+        </div>
+        <div className="stat-row">
           <span className="stat-label">Status</span>
           <span className="stat-value" style={{ color: fillPct > 80 ? '#ff9800' : '#4fc3f7' }}>
-            {fillPct > 80 ? '⚠ Near Capacity' : 'Operational'}
+            {simState.t >= 0.58 && simState.t < 0.80 ? 'Holding Produce' : fillPct > 80 ? '⚠ Near Capacity' : simState.t >= 0.80 ? 'Release Active' : 'Operational'}
           </span>
         </div>
         <div className="harvest-bar-wrap">
