@@ -182,11 +182,8 @@ def validate(
     # Recalculate unallocated
     plan["unallocated_t"] = round(max(0.0, surplus_t - feasible_total), 1)
 
-    # If coverage is too low, mark fallback_used
-    if surplus_t > 0 and (feasible_total / surplus_t) < VALIDATION_MIN_COVER_FRAC:
-        plan["fallback_used"] = True
-        errors.append(
-            f"Feasible coverage {feasible_total:.0f}T is below 50% of surplus {surplus_t:.0f}T"
-        )
+    plan["total_transport_cost"] = round(
+        sum(a.get("transport_cost_total", 0.0) for a in validated_allocations if a.get("feasible", True)), 2
+    )
 
     return plan

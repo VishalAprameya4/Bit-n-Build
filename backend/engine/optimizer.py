@@ -322,12 +322,15 @@ def solve(
 
     unallocated_t = round(max(0.0, surplus_t - total_allocated), 1)
 
+    total_cost = round(sum(a.get("transport_cost_total", 0.0) for a in allocations), 2)
+
     return {
         "plan_id":              str(uuid.uuid4()),
         "glut_risk_pct":        glut_risk,
         "surplus_t":            surplus_t,
         "allocations":          allocations,
         "unallocated_t":        unallocated_t,
+        "total_transport_cost": total_cost,
         "coordinator_reasoning": None,
         "fallback_used":        fallback_used,
         "validation_errors":    [],

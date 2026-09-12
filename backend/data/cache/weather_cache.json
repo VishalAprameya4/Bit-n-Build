@@ -1,0 +1,31 @@
+{
+  "location": "Kolar, Karnataka, India",
+  "latitude": 13.1367,
+  "longitude": 78.1348,
+  "temp_celsius": 28.1,
+  "humidity_pct": 50.0,
+  "precipitation_mm": 0.0,
+  "precipitation_probability_pct": 17.0,
+  "weather_code": 3,
+  "weather_description": "Overcast",
+  "wind_speed_kmh": 6.8,
+  "observed_at": "2026-09-12T18:45",
+  "fetched_at": "2026-09-12T13:22:39.084570",
+  "forecast_24h": {
+    "rainfall_sum_mm": 0.4,
+    "temp_max_c": 31.3,
+    "temp_min_c": 22.5,
+    "precipitation_probability_max": 17.0,
+    "harvest_concentration_risk": false
+  },
+  "forecast_72h": {
+    "rainfall_sum_mm": 8.3,
+    "harvest_risk_window_hours": 72
+  },
+  "weather_risk_score": 0.098,
+  "additional_pressure_estimate_t": 0.5,
+  "source": "Open-Meteo Realtime Forecast API",
+  "source_status": "live",
+  "confidence": 0.95,
+  "freshness": "realtime_hourly"
+}
