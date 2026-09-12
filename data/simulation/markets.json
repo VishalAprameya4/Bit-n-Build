@@ -1,0 +1,38 @@
+[
+  {
+    "market_id": "KOLAR",
+    "name": "Kolar APMC Mandi",
+    "latitude": 13.1367,
+    "longitude": 78.1297,
+    "capacity_t": 850.0,
+    "current_load_t": 910.0,
+    "is_active": 1
+  },
+  {
+    "market_id": "BANGALORE",
+    "name": "Bangalore (KR Market)",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "capacity_t": 500.0,
+    "current_load_t": 370.0,
+    "is_active": 1
+  },
+  {
+    "market_id": "MYSORE",
+    "name": "Mysore APMC",
+    "latitude": 12.2958,
+    "longitude": 76.6394,
+    "capacity_t": 300.0,
+    "current_load_t": 240.0,
+    "is_active": 1
+  },
+  {
+    "market_id": "TUMKUR",
+    "name": "Tumkur APMC",
+    "latitude": 13.3409,
+    "longitude": 77.1010,
+    "capacity_t": 200.0,
+    "current_load_t": 150.0,
+    "is_active": 1
+  }
+]

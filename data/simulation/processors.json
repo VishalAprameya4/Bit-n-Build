@@ -1,0 +1,20 @@
+[
+  {
+    "processor_id": "P1_KOLAR_SAUCE",
+    "name": "Kolar Tomato Processing Unit",
+    "latitude": 13.1600,
+    "longitude": 78.1100,
+    "commodity": "tomato",
+    "capacity_t": 90.0,
+    "is_active": 1
+  },
+  {
+    "processor_id": "P2_BANGALROE_CANNERY",
+    "name": "Bangalore Tomato Cannery",
+    "latitude": 12.9800,
+    "longitude": 77.5700,
+    "commodity": "tomato",
+    "capacity_t": 60.0,
+    "is_active": 1
+  }
+]

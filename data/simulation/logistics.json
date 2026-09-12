@@ -1,0 +1,72 @@
+[
+  {
+    "route_id": "KOLAR_BANGALORE",
+    "origin_id": "KOLAR",
+    "destination_id": "BANGALORE",
+    "distance_km": 100.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 30,
+    "base_cost_per_t": 80.0,
+    "cost_multiplier": 1.0
+  },
+  {
+    "route_id": "KOLAR_MYSORE",
+    "origin_id": "KOLAR",
+    "destination_id": "MYSORE",
+    "distance_km": 195.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 15,
+    "base_cost_per_t": 140.0,
+    "cost_multiplier": 1.0
+  },
+  {
+    "route_id": "KOLAR_TUMKUR",
+    "origin_id": "KOLAR",
+    "destination_id": "TUMKUR",
+    "distance_km": 90.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 10,
+    "base_cost_per_t": 70.0,
+    "cost_multiplier": 1.0
+  },
+  {
+    "route_id": "KOLAR_S1_KOLAR_COLD",
+    "origin_id": "KOLAR",
+    "destination_id": "S1_KOLAR_COLD",
+    "distance_km": 8.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 10,
+    "base_cost_per_t": 15.0,
+    "cost_multiplier": 1.0
+  },
+  {
+    "route_id": "KOLAR_S2_HOSAKOTE",
+    "origin_id": "KOLAR",
+    "destination_id": "S2_HOSAKOTE",
+    "distance_km": 60.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 12,
+    "base_cost_per_t": 50.0,
+    "cost_multiplier": 1.0
+  },
+  {
+    "route_id": "KOLAR_P1_KOLAR_SAUCE",
+    "origin_id": "KOLAR",
+    "destination_id": "P1_KOLAR_SAUCE",
+    "distance_km": 12.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 12,
+    "base_cost_per_t": 20.0,
+    "cost_multiplier": 1.0
+  },
+  {
+    "route_id": "KOLAR_P2_BANGALROE_CANNERY",
+    "origin_id": "KOLAR",
+    "destination_id": "P2_BANGALROE_CANNERY",
+    "distance_km": 105.0,
+    "truck_capacity_t": 10.0,
+    "available_trucks": 8,
+    "base_cost_per_t": 85.0,
+    "cost_multiplier": 1.0
+  }
+]
