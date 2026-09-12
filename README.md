@@ -453,9 +453,9 @@ to transform fragmented agricultural signals into coordinated action.
 
 # 👥 Team
 
-VISHAL APRAMEYA
-SHASHANK SREENIVAS
-SMARAN K RAO
+VISHAL APRAMEYA,
+SHASHANK SREENIVAS,
+SMARAN K RAO,
 SRINIVAS SHANBAGH
 
 ---
