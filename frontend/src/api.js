@@ -21,6 +21,7 @@ async function apiFetch(path, options = {}) {
 export const api = {
   health:          () => apiFetch('/health'),
   scenario:        () => apiFetch('/scenario/current'),
+  refreshData:     () => apiFetch('/data/refresh', { method: 'POST' }),
   generatePlan:    () => apiFetch('/plan/generate', { method: 'POST' }),
   currentPlan:     () => apiFetch('/plan/current'),
   networkGraph:    () => apiFetch('/network/graph'),

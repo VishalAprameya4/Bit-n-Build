@@ -1,7 +1,11 @@
 /**
  * AGRI-FLOW — App Shell
- * Fullscreen 3D Digital Twin with floating HUD overlays.
- * Agent Brain accessible via secondary tab.
+ * Multi-view Agricultural Supply Intelligence & Autonomous Response Network
+ * Tabs:
+ * 1. Overview (Live Kolar Mandi & Weather Command Center)
+ * 2. Field Intelligence (Farmer Plot Telemetry & Harvest Risk Timeline)
+ * 3. Digital Twin (Preserved 2.5D Living Simulation & HUDs - UNTOUCHED)
+ * 4. Agent Brain (Visual Reasoning Pipeline Flow Diagram)
  */
 import { useState, useEffect } from 'react';
 import { useAppState }  from './useAppState';
@@ -13,49 +17,79 @@ import FarmPanel    from './hud/FarmPanel';
 import StoragePanel from './hud/StoragePanel';
 import MarketPanel  from './hud/MarketPanel';
 import InsightBar   from './hud/InsightBar';
-import AgentPanel   from './components/AgentPanel';
+import Overview     from './components/Overview';
+import FieldIntelligence from './components/FieldIntelligence';
+import AgentBrain   from './components/AgentBrain';
 import './index.css';
 
 export default function App() {
   const appState = useAppState();
   const sim      = useSimulation(appState.scenario);
-  const [activeTab, setActiveTab] = useState('twin');
+  const [activeTab, setActiveTab] = useState('overview');
   const [showPlan, setShowPlan]   = useState(false);
 
-  // Load backend data on mount (non-blocking)
-  useEffect(() => { appState.analyzeGlut(); }, []);
+  // Load backend data on mount
+  useEffect(() => {
+    appState.analyzeGlut();
+  }, []);
 
   return (
     <div className="agriflow-shell">
-      {/* ── TOP NAV ─────────────────────────────────────────── */}
+      {/* ── TOP NAVIGATION BAR ───────────────────────────────── */}
       <header className="agri-nav">
-        <div className="agri-nav-brand">
-          <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="16" r="14" stroke="#4caf50" strokeWidth="2.5"/>
-            <path d="M10 22 Q16 8 22 22" stroke="#7ec850" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-            <circle cx="16" cy="14" r="3" fill="#7ec850"/>
+        <div className="agri-nav-brand" onClick={() => setActiveTab('overview')} style={{ cursor: 'pointer' }}>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="#22c55e" strokeWidth="2.5"/>
+            <path d="M10 22 Q16 8 22 22" stroke="#4ade80" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            <circle cx="16" cy="14" r="3" fill="#4ade80"/>
           </svg>
-          <span className="brand-name">AGRI-FLOW</span>
-          <span className="brand-sub">Living Digital Twin</span>
+          <div className="brand-text-block">
+            <span className="brand-name">AGRI-FLOW</span>
+            <span className="brand-sub">Regional Supply Intelligence</span>
+          </div>
         </div>
 
         <nav className="agri-nav-tabs">
           <button
-            className={`nav-tab${activeTab === 'twin' ? ' active' : ''}`}
-            onClick={() => setActiveTab('twin')}
+            className={`nav-tab${activeTab === 'overview' ? ' active' : ''}`}
+            onClick={() => setActiveTab('overview')}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
               <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
             </svg>
+            Overview
+          </button>
+
+          <button
+            className={`nav-tab${activeTab === 'field' ? ' active' : ''}`}
+            onClick={() => setActiveTab('field')}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Field Intelligence
+          </button>
+
+          <button
+            className={`nav-tab${activeTab === 'twin' ? ' active' : ''}`}
+            onClick={() => setActiveTab('twin')}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
             Digital Twin
           </button>
+
           <button
             className={`nav-tab${activeTab === 'agent' ? ' active' : ''}`}
             onClick={() => setActiveTab('agent')}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="8" r="4"/><path d="M4 20 Q4 14 12 14 Q20 14 20 20"/>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3 3"/>
             </svg>
             Agent Brain
           </button>
@@ -63,15 +97,34 @@ export default function App() {
 
         <div className="agri-nav-meta">
           <span className="nav-location">📍 Kolar, Karnataka</span>
-          <span className="nav-time">Sep 12, 2026</span>
           <div className={`nav-status${appState.backendOk ? ' status-live' : ' status-demo'}`}>
             <span className="dot dot-green dot-pulse" />
-            {appState.backendOk ? 'Live' : 'Demo'}
+            {appState.backendOk ? 'Live Data Connected' : 'Demo Mode'}
           </div>
         </div>
       </header>
 
-      {/* ── DIGITAL TWIN VIEW ────────────────────────────────── */}
+      {/* ── 1. OVERVIEW VIEW ─────────────────────────────────── */}
+      {activeTab === 'overview' && (
+        <Overview
+          scenario={appState.scenario}
+          plan={appState.plan}
+          onNavigate={setActiveTab}
+          onRefresh={appState.refreshLiveData}
+          refreshing={appState.refreshing}
+        />
+      )}
+
+      {/* ── 2. FIELD INTELLIGENCE VIEW ───────────────────────── */}
+      {activeTab === 'field' && (
+        <FieldIntelligence
+          scenario={appState.scenario}
+          plan={appState.plan}
+          onNavigate={setActiveTab}
+        />
+      )}
+
+      {/* ── 3. DIGITAL TWIN VIEW (COMPLETELY UNTOUCHED) ──────── */}
       {activeTab === 'twin' && (
         <div className="twin-container">
           {/* Fullscreen 2.5D cinematic map */}
@@ -159,36 +212,24 @@ export default function App() {
         </div>
       )}
 
-      {/* ── AGENT BRAIN VIEW ─────────────────────────────────── */}
+      {/* ── 4. AGENT BRAIN VIEW (VISUAL FLOW PIPELINE) ────────── */}
       {activeTab === 'agent' && (
-        <div className="agent-view">
-          <AgentPanel trace={appState.trace} phase={appState.phase} />
-          <div className="agent-controls">
-            <button
-              className="btn btn-primary"
-              disabled={appState.phase === 'analyzing' || appState.phase === 'replanning'}
-              onClick={appState.analyzeGlut}
-            >
-              {appState.phase === 'analyzing' ? 'Analyzing…' : 'Run Analysis'}
-            </button>
-            <button
-              className="btn btn-danger"
-              disabled={appState.phase !== 'active'}
-              onClick={appState.simulateDisruption}
-            >
-              Simulate Disruption
-            </button>
-            <button className="btn btn-ghost" onClick={appState.reset}>
-              Reset
-            </button>
-          </div>
-        </div>
+        <AgentBrain
+          scenario={appState.scenario}
+          plan={appState.plan}
+          trace={appState.trace}
+          activity={appState.activity}
+          phase={appState.phase}
+          onAnalyze={appState.analyzeGlut}
+          onDisruption={appState.simulateDisruption}
+          onReset={appState.reset}
+        />
       )}
     </div>
   );
 }
 
-/* ── Inline sub-components ─────────────────────────────────────────────────── */
+/* ── Inline sub-components for Digital Twin (Preserved) ─────────────────────── */
 
 function GlutBadge({ scenario, simState }) {
   const risk = scenario?.glut_risk_pct ?? 76;
