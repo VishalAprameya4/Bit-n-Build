@@ -15,7 +15,9 @@ export default function MarketPanel({ simState, scenario }) {
   return (
     <div className="hud-panel market-panel">
       <div className="hud-panel-header">
-        <span className="hud-panel-icon">📊</span>
+        <span className="hud-panel-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="12" width="4" height="8"/><rect x="10" y="8" width="4" height="12"/><rect x="17" y="4" width="4" height="16"/></svg>
+        </span>
         <span className="hud-panel-title">Market · Kolar APMC</span>
         <span className="hud-live-badge">LIVE</span>
       </div>
@@ -65,7 +67,7 @@ export default function MarketPanel({ simState, scenario }) {
           </div>
         </div>
         {scenario?.observed?.market?.source_status === 'live' && (
-          <div className="market-source">📡 AGMARKNET / OGD India</div>
+          <div className="market-source">AGMARKNET / OGD India</div>
         )}
       </div>
     </div>

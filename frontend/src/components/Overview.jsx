@@ -44,7 +44,7 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
               <span className="dot dot-green dot-pulse" />
               LIVE TELEMETRY
             </span>
-            <span className="location-chip">📍 Kolar APMC Yard, Karnataka</span>
+            <span className="location-chip">Kolar APMC Yard, Karnataka</span>
             <span className="crop-chip">Tomato (Hybrid / Local)</span>
           </div>
           <h1 className="view-title">Regional Agricultural Supply Intelligence</h1>
@@ -222,7 +222,9 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
           <div className="glass-reflection-streak" />
           <div className="panel-card-header">
             <div className="panel-title-group">
-              <span className="panel-icon icon-market">📈</span>
+              <span className="panel-icon icon-market">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </span>
               <div>
                 <h3 className="panel-title">KOLAR TOMATO MARKET</h3>
                 <span className="panel-source">APMC Mandi Yard • Hybrid & Local Varieties</span>
@@ -300,7 +302,7 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
                     const isToday = i === history.slice(-5).length - 1;
                     return (
                       <tr key={h.date || i} className={isToday ? 'today-row' : ''}>
-                        <td className="font-mono">{h.date} {isToday ? '★' : ''}</td>
+                        <td className="font-mono">{h.date} {isToday ? '•' : ''}</td>
                         <td className="font-semibold">{h.arrivals_t} T</td>
                         <td className="font-semibold">₹{h.modal_price?.toLocaleString('en-IN')}/Q</td>
                         <td>
@@ -321,7 +323,9 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
         <div className="panel-card">
           <div className="panel-card-header">
             <div className="panel-title-group">
-              <span className="panel-icon icon-weather">🌦</span>
+              <span className="panel-icon icon-weather">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+              </span>
               <div>
                 <h3 className="panel-title">KOLAR ATMOSPHERIC WEATHER</h3>
                 <span className="panel-source">High-Resolution Radar Telemetry</span>
@@ -334,7 +338,9 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
             <div className="wh-left">
               <span className="wh-temp">{tempC}°C</span>
               <div className="wh-condition">
-                <span className="wh-icon">⛅</span>
+                <span className="wh-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                </span>
                 <span>{weatherDesc}</span>
               </div>
             </div>
@@ -362,7 +368,7 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
                 <strong>{rainSum24h} mm</strong>
               </div>
               <p className="f-box-desc">
-                ✓ Dry ground window remains open for manual and mechanical harvesting today.
+                Dry ground window remains open for manual and mechanical harvesting today.
               </p>
             </div>
 
@@ -373,7 +379,7 @@ export default function Overview({ scenario, plan, onNavigate, onRefresh, refres
                 <strong className="text-red">{rainSum72h} mm</strong>
               </div>
               <p className="f-box-desc text-danger">
-                ⚠ Heavy downpour creates urgent harvest compulsion to avoid field waterlogging.
+                Heavy downpour creates urgent harvest compulsion to avoid field waterlogging.
               </p>
             </div>
           </div>

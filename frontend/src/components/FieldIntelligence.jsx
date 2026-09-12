@@ -22,7 +22,6 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
       statusClass: 'tag-optimal',
       temp: `${Math.round(currentTemp)}°C`,
       condition: 'Partly Cloudy',
-      icon: '⛅',
       rain: '0.4 mm',
       action: 'Prime picking window',
       isHero: true,
@@ -34,7 +33,6 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
       statusClass: 'tag-caution',
       temp: '27°C',
       condition: 'Showers',
-      icon: '🌦',
       rain: '4.2 mm',
       action: 'Afternoon rain',
       isHero: false,
@@ -46,7 +44,6 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
       statusClass: 'tag-critical',
       temp: '24°C',
       condition: 'Downpour',
-      icon: '⛈',
       rain: '18.5 mm',
       action: 'Severe rain risk',
       isHero: false,
@@ -58,7 +55,6 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
       statusClass: 'tag-recovery',
       temp: '26°C',
       condition: 'Scattered',
-      icon: '🌧',
       rain: '6.0 mm',
       action: 'Soil waterlogged',
       isHero: false,
@@ -75,7 +71,7 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
               <span className="dot dot-green dot-pulse" />
               PLOT SENSOR NETWORK
             </span>
-            <span className="location-chip">📍 Kolar Cluster #4 • Plot KLR-088</span>
+            <span className="location-chip">Kolar Cluster #4 • Plot KLR-088</span>
             <span className="crop-chip">Tomato (Arka Rakshak)</span>
           </div>
           <h1 className="view-title">Farmer & Crop Field Intelligence</h1>
@@ -146,15 +142,15 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
                 <span className={`status-pill ${d.statusClass}`}>{d.status}</span>
               </div>
               <div className="tc-icon-temp">
-                <span className="tc-icon">{d.icon}</span>
                 <span className="tc-temp">{d.temp}</span>
+                <span className="tc-cond-label">{d.condition}</span>
               </div>
               <div className="tc-rain-row">
                 <span>Rain:</span>
                 <strong>{d.rain}</strong>
               </div>
               <span className="tc-action">{d.action}</span>
-              {d.isHero && <span className="tc-hero-badge">★ BEST PICKING</span>}
+              {d.isHero && <span className="tc-hero-badge">OPTIMAL HARVEST</span>}
             </div>
           ))}
         </div>
@@ -166,7 +162,9 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
         <div className="panel-card">
           <div className="panel-card-header">
             <div className="panel-title-group">
-              <span className="panel-icon icon-crop">🌱</span>
+              <span className="panel-icon icon-crop">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
               <div>
                 <h3 className="panel-title">FARM PLOT & DISPATCH PROFILE</h3>
                 <span className="panel-source">Farmer Plot KLR-088 • Cluster Supply: 1,200 T</span>
@@ -209,7 +207,9 @@ export default function FieldIntelligence({ scenario, plan, onNavigate }) {
         <div className="panel-card">
           <div className="panel-card-header">
             <div className="panel-title-group">
-              <span className="panel-icon icon-evidence">🛡</span>
+              <span className="panel-icon icon-evidence">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </span>
               <div>
                 <h3 className="panel-title">DECISION EVIDENCE</h3>
                 <span className="panel-source">Scientific basis for immediate harvest</span>

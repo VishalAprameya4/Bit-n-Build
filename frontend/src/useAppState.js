@@ -208,13 +208,32 @@ export function useAppState() {
       const snap = await api.scenario();
       setScenario(snap);
       setBackendOk(true);
+      const graphData = await api.networkGraph().catch(() => null);
+      if (graphData?.nodes) mergeNodesFromGraph(graphData.nodes);
     } catch {
+      setBackendOk(false);
       setScenario(DEMO_SCENARIO);
+      setNodes(DEMO_NODES);
     }
-  }, []);
+  }, [clearTimers, mergeNodesFromGraph]);
+
+  // ── Initial Live Data Load ─────────────────────────────────────────────
+  const init = useCallback(async () => {
+    try {
+      const snap = await api.scenario();
+      setScenario(snap);
+      setBackendOk(true);
+      const graphData = await api.networkGraph().catch(() => null);
+      if (graphData?.nodes) mergeNodesFromGraph(graphData.nodes);
+    } catch {
+      setBackendOk(false);
+      setScenario(DEMO_SCENARIO);
+      setNodes(DEMO_NODES);
+    }
+  }, [mergeNodesFromGraph]);
 
   return {
     phase, scenario, nodes, edges, allocations, trace, activity, plan, error, backendOk, refreshing,
-    analyzeGlut, refreshLiveData, simulateDisruption, reset,
+    init, analyzeGlut, refreshLiveData, simulateDisruption, reset,
   };
 }

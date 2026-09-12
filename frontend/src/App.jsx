@@ -28,9 +28,9 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [showPlan, setShowPlan]   = useState(false);
 
-  // Load backend data on mount
+  // Load backend data on mount (Telemetry ready, pipeline idle)
   useEffect(() => {
-    appState.analyzeGlut();
+    appState.init();
   }, []);
 
   return (
@@ -96,7 +96,7 @@ export default function App() {
         </nav>
 
         <div className="agri-nav-meta">
-          <span className="nav-location">📍 Kolar, Karnataka</span>
+          <span className="nav-location">Kolar, Karnataka</span>
           <div className={`nav-status${appState.backendOk ? ' status-live' : ' status-demo'}`}>
             <span className="dot dot-green dot-pulse" />
             {appState.backendOk ? 'Live Data Connected' : 'Demo Mode'}
